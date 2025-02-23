@@ -4,37 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عرض فيديو Vimeo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        #video-container {
-            margin-top: 20px;
-        }
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>عرض فيديو Vimeo</h1>
-    <form id="video-form">
-        <label for="vimeo-link">أدخل رابط Vimeo:</label>
-        <input type="text" id="vimeo-link" name="vimeo-link" required>
-        <button type="submit">عرض الفيديو</button>
-    </form>
-
-    <div id="video-container">
-        <!-- سيتم عرض الفيديو هنا -->
+    <div class="container">
+        <h1>عرض فيديو Vimeo</h1>
+        <form id="video-form">
+            <label for="vimeo-link">أدخل رابط Vimeo:</label>
+            <input type="text" id="vimeo-link" name="vimeo-link" required placeholder="مثال: https://player.vimeo.com/video/1040526238">
+            <button type="submit">عرض الفيديو</button>
+        </form>
+    </div>
+    <div class="credits">
+        تم التصميم بواسطة <span class="raven">Raven</span>
     </div>
 
     <script>
@@ -50,7 +33,7 @@
         });
 
         function extractVimeoId(url) {
-            const match = url.match(/vimeo\.com\/(\d+)/);
+            const match = url.match(/\/video\/(\d+)/);
             return match ? match[1] : null;
         }
 
