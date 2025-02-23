@@ -1,0 +1,121 @@
+/* إعادة تعيين بعض الإعدادات الأساسية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #000000, #1a1a1a); /* تدرج من الأسود إلى الرمادي الداكن */
+    color: #ffffff; /* لون نص أبيض */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1); /* خلفية شبه شفافة */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* ظل داكن */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #ffffff; /* لون أبيض */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #bdc3c7; /* لون رمادي فاتح */
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1); /* خلفية شبه شفافة */
+    color: #ffffff; /* لون نص أبيض */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    background: rgba(255, 255, 255, 0.2); /* خلفية أفتح عند التركيز */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* ظل أبيض */
+    outline: none;
+}
+
+input[type="text"]::placeholder {
+    color: #95a5a6; /* لون رمادي للعنصر النائب */
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #3498db; /* لون أزرق فاتح */
+    color: #ffffff; /* لون أبيض */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background: #2980b9; /* لون أزرق داكن عند التمرير */
+    transform: translateY(-5px); /* حركة للأعلى */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* ظل أكبر */
+}
+
+button:active {
+    transform: translateY(0); /* إعادة الزر إلى مكانه */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* ظل أصغر */
+}
+
+.credits {
+    position: fixed;
+    bottom: 20px;
+    font-size: 0.9rem;
+    color: #bdc3c7; /* لون رمادي فاتح */
+}
+
+.raven {
+    color: #3498db; /* لون أزرق فاتح */
+    font-weight: 700;
+}
+
+/* تصميم متجاوب للشاشات الصغيرة */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    input[type="text"], button {
+        font-size: 0.9rem;
+    }
+
+    .credits {
+        font-size: 0.8rem;
+    }
+}
