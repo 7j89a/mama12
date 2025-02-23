@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض فيديو Vimeo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #video-container {
+            margin-top: 20px;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h1>عرض فيديو Vimeo</h1>
+    <form id="video-form">
+        <label for="vimeo-link">أدخل رابط Vimeo:</label>
+        <input type="text" id="vimeo-link" name="vimeo-link" required>
+        <button type="submit">عرض الفيديو</button>
+    </form>
+
+    <div id="video-container">
+        <!-- سيتم عرض الفيديو هنا -->
+    </div>
+
+    <script>
+        document.getElementById('video-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const vimeoLink = document.getElementById('vimeo-link').value;
+            const videoId = extractVimeoId(vimeoLink);
+            if (videoId) {
+                openVideoPopup(videoId);
+            } else {
+                alert('الرجاء إدخال رابط Vimeo صحيح.');
+            }
+        });
+
+        function extractVimeoId(url) {
+            const match = url.match(/vimeo\.com\/(\d+)/);
+            return match ? match[1] : null;
+        }
+
+        function openVideoPopup(videoId) {
+            const proxyUrl = `/.netlify/functions/vimeo-proxy?videoId=${videoId}`;
+            window.open(proxyUrl, 'Vimeo Video', 'width=640,height=360');
+        }
+    </script>
+</body>
+</html>
