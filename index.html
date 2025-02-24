@@ -3,30 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عرض فيديو Vimeo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>RAVEN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="background"></div>
     <div class="container">
-        <h1>عرض فيديو Vimeo</h1>
+        <h1>RAVEN</h1>
         <form id="video-form">
-            <label for="vimeo-link">أدخل رابط Vimeo:</label>
+            <label for="vimeo-link">: Vimeo أدخل رابط</label>
             <input type="text" id="vimeo-link" name="vimeo-link" required placeholder="مثال: https://player.vimeo.com/video/1040526238">
-            <button type="submit">عرض الفيديو</button>
+            
+            <div class="referrer-buttons">
+                <p>: Referrer اختر</p>
+                <button type="button" class="referrer-btn" data-referrer="https://www.joacademy.com/">joacademy</button>
+                <button type="button" class="referrer-btn" data-referrer="https://hisas.online/">hisas online</button>
+            </div>
+
+            <button type="submit" class="submit-btn">عرض الفيديو</button>
         </form>
     </div>
     <div class="credits">
-        تم التصميم بواسطة <span class="raven">Raven</span>
+        تم تصميم بواسطة <span class="raven">RAVEN</span>
     </div>
 
     <script>
+        let selectedReferrer = "";
+
+        document.querySelectorAll('.referrer-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                selectedReferrer = this.getAttribute('data-referrer');
+                document.querySelectorAll('.referrer-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
         document.getElementById('video-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const vimeoLink = document.getElementById('vimeo-link').value;
             const videoId = extractVimeoId(vimeoLink);
+
             if (videoId) {
-                openVideoPopup(videoId);
+                if (!selectedReferrer) {
+                    alert('الرجاء اختيار Referrer.');
+                    return;
+                }
+                openVideoPopup(videoId, selectedReferrer);
             } else {
                 alert('الرجاء إدخال رابط Vimeo صحيح.');
             }
@@ -37,8 +60,8 @@
             return match ? match[1] : null;
         }
 
-        function openVideoPopup(videoId) {
-            const proxyUrl = `/.netlify/functions/vimeo-proxy?videoId=${videoId}`;
+        function openVideoPopup(videoId, referrer) {
+            const proxyUrl = `/.netlify/functions/vimeo-proxy?videoId=${videoId}&referrer=${encodeURIComponent(referrer)}`;
             window.open(proxyUrl, 'Vimeo Video', 'width=640,height=360');
         }
     </script>
