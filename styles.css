@@ -184,6 +184,15 @@ input[type="text"]::placeholder {
     font-weight: 700;
 }
 
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Almarai', sans-serif;
+    display: none;
+}
+
 /* تصميم متجاوب للشاشات الصغيرة */
 @media (max-width: 600px) {
     h1 {
