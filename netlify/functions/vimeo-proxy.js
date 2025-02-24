@@ -1,14 +1,14 @@
-// netlify/functions/vimeo-proxy.js
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
     const videoId = event.queryStringParameters.videoId;
+    const referrer = event.queryStringParameters.referrer;
     const vimeoUrl = `https://player.vimeo.com/video/${videoId}`;
 
     try {
         const response = await fetch(vimeoUrl, {
             headers: {
-                'Referer': 'https://www.joacademy.com/'
+                'Referer': referrer
             }
         });
 
