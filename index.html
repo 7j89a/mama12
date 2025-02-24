@@ -15,6 +15,11 @@
             <label for="vimeo-link">: Vimeo أدخل رابط</label>
             <input type="text" id="vimeo-link" name="vimeo-link" required placeholder="مثال: https://player.vimeo.com/video/1040526238">
             
+            <!-- رسالة الخطأ -->
+            <div id="error-message" class="error-message" style="display: none;">
+                الرجاء إدخال رابط Vimeo صحيح.
+            </div>
+
             <div class="referrer-buttons">
                 <p>: Referrer اختر</p>
                 <button type="button" class="referrer-btn" data-referrer="https://www.joacademy.com/">joacademy</button>
@@ -43,15 +48,19 @@
             event.preventDefault();
             const vimeoLink = document.getElementById('vimeo-link').value;
             const videoId = extractVimeoId(vimeoLink);
+            const errorMessage = document.getElementById('error-message');
 
             if (videoId) {
                 if (!selectedReferrer) {
-                    alert('الرجاء اختيار Referrer.');
+                    errorMessage.textContent = 'الرجاء اختيار Referrer.';
+                    errorMessage.style.display = 'block';
                     return;
                 }
+                errorMessage.style.display = 'none';
                 openVideoPopup(videoId, selectedReferrer);
             } else {
-                alert('الرجاء إدخال رابط Vimeo صحيح.');
+                errorMessage.textContent = 'الرجاء إدخال رابط Vimeo صحيح.';
+                errorMessage.style.display = 'block';
             }
         });
 
