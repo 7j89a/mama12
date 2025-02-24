@@ -52,14 +52,14 @@
 
             if (videoId) {
                 if (!selectedReferrer) {
-                    errorMessage.textContent = 'الرجاء اختيار Referrer.';
+                    errorMessage.textContent = 'Referrer الرجاء اختيار';
                     errorMessage.style.display = 'block';
                     return;
                 }
                 errorMessage.style.display = 'none';
                 openVideoPopup(videoId, selectedReferrer);
             } else {
-                errorMessage.textContent = 'الرجاء إدخال رابط Vimeo صحيح.';
+                errorMessage.textContent = 'الرجاء إدخال رابط صحيح.';
                 errorMessage.style.display = 'block';
             }
         });
